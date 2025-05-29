@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visualization - Mosquito Prevention Techniques</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #1a1f2e;
+      color: white;
+      text-align: center;
+    }
+    /* Navbar */
+.navbar {
+    background: linear-gradient(135deg, #1a3c34 0%, #2c3e50 100%);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s, color 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background: rgba(52, 152, 219, 0.2);
+    color: #b3d4c9;
+    transform: scale(1.05);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #e67e22;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 50%;
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    right: 2rem;
+}
+
+    h1 {
+      font-size: 2rem;
+      margin-top: 2rem;
+      font-weight: 700;
+    }
+
+    .chart-buttons {
+      margin: 1rem 0;
+    }
+
+    .chart-buttons button {
+      padding: 10px 16px;
+      margin: 5px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .chart-buttons button:hover,
+    .chart-buttons button.active {
+      background: linear-gradient(135deg, #258cd1, #1c6ea4);
+      transform: translateY(-2px);
+    }
+
+    .charts-container {
+      max-width: 60%;
+      margin: 2rem auto;
+    }
+
+    canvas {
+      width: 80% !important;
+      height: 80% !important;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      align-items: right;
+    }
+  </style>
+</head>
+<body>
+
+  
+  <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="questionnaire.html">Questionnaire</a></li>
+                <li><a href="surveydata.html">Survey Data</a></li>
+                <li><a href="visualization.html">Visualization</a></li>
+                <li><a href="photos.html">Photos</a></li>
+                <li><a href="conclusion.html">Conclusion</a></li>
+                <li><a href="team.html">Team</a></li>
+            </ul>
+            <div class="hamburger">☰</div>
+        </div>
+    </nav>
+    <h1>Mosquito Prevention Visualizations</h1>
+  <!-- Navigation Buttons -->
+  <div class="chart-buttons">
+    <button onclick="showChart('bar')" class="active">Prevention Methods</button>
+    <button onclick="showChart('pie')">Stagnant Water</button>
+    <button onclick="showChart('doughnut')">Mosquito Nets</button>
+    <button onclick="showChart('line')">Govt vs Residents</button>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts-container">
+    <canvas id="barChart"></canvas>
+    <canvas id="pieChart" style="display: none;"></canvas>
+    <canvas id="doughnutChart" style="display: none;"></canvas>
+    <canvas id="lineChart" style="display: none;"></canvas>
+  </div>
+
+  <script>
+    function showChart(type) {
+      const charts = ['bar', 'pie', 'doughnut', 'line'];
+      charts.forEach(chart => {
+        const el = document.getElementById(chart + 'Chart');
+        el.style.display = chart === type ? 'block' : 'none';
+      });
+
+      // Force redraw on switch
+      setTimeout(() => {
+        if (window[type + 'Chart']) window[type + 'Chart'].resize();
+      }, 100);
+    }
+
+    // Initialize Charts
+    window.barChart = new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Coils/Vaporizers/Racket', 'Nets/Screens', 'Water Removal'],
+        datasets: [{ label: 'Used By (out of 50)', data: [24, 21, 32], backgroundColor: ['#3498db', '#2ecc71', '#f39c12'] }]
+      },
+      options: { responsive: true }
+    });
+
+    window.pieChart = new Chart(document.getElementById('pieChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Remove Stagnant Water', 'Do Not Remove'],
+        datasets: [{ label: 'Residents', data: [32, 18], backgroundColor: ['#e67e22', '#e74c3c'] }]
+      },
+      options: { responsive: true }
+    });
+
+    window.doughnutChart = new Chart(document.getElementById('doughnutChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Use Nets', 'No Nets'],
+        datasets: [{ label: 'Mosquito Nets Usage', data: [21, 29], backgroundColor: ['#3498db', '#95a5a6'] }]
+      },
+      options: { responsive: true }
+    });
+
+    window.lineChart = new Chart(document.getElementById('lineChart'), {
+      type: 'line',
+      data: {
+        labels: ['Govt Activity Seen', 'Active Prevention'],
+        datasets: [
+          { label: 'Government Control Seen', data: [28, 28], borderColor: '#8e44ad', fill: false, tension: 0.4 },
+          { label: 'Residents Practicing', data: [32, 32], borderColor: '#27ae60', fill: false, tension: 0.4 }
+        ]
+      },
+      options: { responsive: true }
+    });
+
+    // Show default chart
+    window.onload = () => showChart('bar');
+  </script>
+</body>
+</html>

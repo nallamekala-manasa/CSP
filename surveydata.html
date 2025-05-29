@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Survey Data - Mosquito Prevention Techniques</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="introduction.html">Introduction</a></li>
+        <li><a href="questionnaire.html">Questionnaire</a></li>
+        <li><a href="surveydata.html" class="active">Survey Data</a></li>
+        <li><a href="visualization.html">Visualization</a></li>
+        <li><a href="photos.html">Photos</a></li>
+        <li><a href="conclusion.html">Conclusion</a></li>
+        <li><a href="team.html">Team</a></li>
+      </ul>
+      <div class="hamburger">☰</div>
+    </div>
+  </nav>
+
+  <section id="surveydata" class="section">
+    <div class="section-content">
+      <h2>Survey Data Collected from Residents</h2>
+      <div class="table-container">
+        <table id="survey-table">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Aadhaar No.</th>
+              <th>Mobile</th>
+              <th>Stagnant Water Removed</th>
+              <th>Mosquito Nets Used</th>
+              <th>Mosquito Coils/Vaporizers/Racket</th>
+              <th>Govt. Control Activity Seen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- JS Injected Rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <canvas id="particle-canvas"></canvas>
+  </section>
+
+  <footer>
+    <p>© 2025 Mosquito Prevention Project. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const surveyData = [
+      { sno: 1, name: "K. Jyothi", address: "Fathe Khan Peta, Nellore", aadhaar: "284695680530", mobile: "7287828788", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 2, name: "E. Bhumika", address: "Fathe Khan Peta, Nellore", aadhaar: "583606083757", mobile: "8247050548", stagnantWater: "No", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "No" },
+      { sno: 3, name: "N. Amala", address: "Fathe Khan Peta, Nellore", aadhaar: "901598650701", mobile: "7382079913", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "Yes" },
+      { sno: 4, name: "B. Deepika", address: "Fathe Khan Peta, Nellore", aadhaar: "494568951235", mobile: "9182125807", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 5, name: "Ch. Sunitha", address: "Fathe Khan Peta, Nellore", aadhaar: "597182242464", mobile: "7396191891", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "Yes" },
+      { sno: 6, name: "S. Kumari", address: "Fathe Khan Peta, Nellore", aadhaar: "959148959046", mobile: "8790637331", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "No", govtControl: "No" },
+      { sno: 7, name: "M. Omkar", address: "Fathe Khan Peta, Nellore", aadhaar: "983892146234", mobile: "6309169426", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 8, name: "P. Seshu", address: "Fathe Khan Peta, Nellore", aadhaar: "836304169939", mobile: "9177640553", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 9, name: "P. Krishnaveni", address: "Fathe Khan Peta, Nellore", aadhaar: "---", mobile: "6302575400", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 10, name: "Ch. Madhu", address: "Fathe Khan Peta, Nellore", aadhaar: "457984730256", mobile: "9014813251", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 11, name: "G.L.V. Kumar", address: "Fathe Khan Peta, Nellore", aadhaar: "437890546213", mobile: "9908273225", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 12, name: "P. Venu Gopal", address: "Fathe Khan Peta, Nellore", aadhaar: "345689321088", mobile: "9494645032", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "Yes" },
+      { sno: 13, name: "K. Kavitha", address: "Fathe Khan Peta, Nellore", aadhaar: "---", mobile: "8985852690", stagnantWater: "No", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "Yes" },
+      { sno: 14, name: "P. Chandrakala", address: "Fathe Khan Peta, Nellore", aadhaar: "456678906422", mobile: "7207964051", stagnantWater: "No", mosquitoNets: "Yes", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 15, name: "K. Kondal", address: "Fathe Khan Peta, Nellore", aadhaar: "890675347890", mobile: "8838595632", stagnantWater: "No", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 16, name: "Sh. Heena", address: "Fathe Khan Peta, Nellore", aadhaar: "567656843290", mobile: "9398954544", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "No", govtControl: "No" },
+      { sno: 17, name: "P. Kiran", address: "Fathe Khan Peta, Nellore", aadhaar: "---", mobile: "9390142883", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 18, name: "P. Kasthuri", address: "Fathe Khan Peta, Nellore", aadhaar: "675842133355", mobile: "7702050023", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 19, name: "K. Mohan", address: "Fathe Khan Peta, Nellore", aadhaar: "890889996554", mobile: "9901767366", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 20, name: "G. JanakiRam", address: "Fathe Khan Peta, Nellore", aadhaar: "---", mobile: "6309245810", stagnantWater: "No", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 21, name: "K. Govind", address: "Fathe Khan Peta, Nellore", aadhaar: "---", mobile: "8050313187", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 22, name: "D. Hazarat", address: "Fathe Khan Peta, Nellore", aadhaar: "---", mobile: "9063742955", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "No" },
+      { sno: 23, name: "M. Lakshmaiah", address: "Fathe Khan Peta, Nellore", aadhaar: "512223388976", mobile: "9441524414", stagnantWater: "No", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 24, name: "B. Praveena", address: "Fathe Khan Peta, Nellore", aadhaar: "678945634458", mobile: "9581204745", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 25, name: "Sk. Ayesha", address: "Fathe Khan Peta, Nellore", aadhaar: "227690865334", mobile: "9100242828", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 26, name: "Sk. Ashma", address: "Fathe Khan Peta, Nellore", aadhaar: "778900642314", mobile: "9052750812", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 27, name: "P. Thirupal", address: "Fathe Khan Peta, Nellore", aadhaar: "435768090423", mobile: "9866427370", stagnantWater: "No", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "No" },
+      { sno: 28, name: "P. Vengayya", address: "Fathe Khan Peta, Nellore", aadhaar: "443144687980", mobile: "9494831124", stagnantWater: "No", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "Yes" },
+      { sno: 29, name: "P. Meghana", address: "Fathe Khan Peta, Nellore", aadhaar: "578799997856", mobile: "9182239899", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "Yes" },
+      { sno: 30, name: "G. Yamini", address: "Fathe Khan Peta, Nellore", aadhaar: "806664353769", mobile: "7801050525", stagnantWater: "No", mosquitoNets: "Yes", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 31, name: "M. Shiva", address: "Fathe Khan Peta, Nellore", aadhaar: "254768089777", mobile: "9392887325", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 32, name: "V. Dhana", address: "Fathe Khan Peta, Nellore", aadhaar: "867464225756", mobile: "8088766029", stagnantWater: "No", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "Yes" },
+      { sno: 33, name: "S. Lakshmi", address: "Fathe Khan Peta, Nellore", aadhaar: "879906534212", mobile: "7674876331", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 34, name: "Y. Lahari", address: "Fathe Khan Peta, Nellore", aadhaar: "766548902346", mobile: "8328231129", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "No" },
+      { sno: 35, name: "Ch. Manasa", address: "Fathe Khan Peta, Nellore", aadhaar: "---", mobile: "6301285936", stagnantWater: "No", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 36, name: "M. Manoja", address: "Fathe Khan Peta, Nellore", aadhaar: "411223215647", mobile: "8977311071", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "No" },
+      { sno: 37, name: "M. Sri Lakshmi", address: "Fathe Khan Peta, Nellore", aadhaar: "---", mobile: "7795242683", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "Yes" },
+      { sno: 38, name: "P. Poojitha", address: "Fathe Khan Peta, Nellore", aadhaar: "756899900675", mobile: "9381249805", stagnantWater: "No", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 39, name: "S. Bhargavi", address: "Fathe Khan Peta, Nellore", aadhaar: "432225678978", mobile: "9676575627", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "No", govtControl: "Yes" },
+      { sno: 40, name: "K. Jaswanti", address: "Fathe Khan Peta, Nellore", aadhaar: "---", mobile: "9299353555", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "Yes" },
+      { sno: 41, name: "Ch. Karuna", address: "Fathe Khan Peta, Nellore", aadhaar: "981531560153", mobile: "9966144949", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 42, name: "N. Lakshmi", address: "Fathe Khan Peta, Nellore", aadhaar: "317978485932", mobile: "7799694401", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "No", govtControl: "No" },
+      { sno: 43, name: "K. Meenamba", address: "Fathe Khan Peta, Nellore", aadhaar: "390337035069", mobile: "9949587303", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "Yes" },
+      { sno: 44, name: "Ch. Vara Lakshmi", address: "Fathe Khan Peta, Nellore", aadhaar: "321356998028", mobile: "9703118388", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 45, name: "B. Jyoshna", address: "Fathe Khan Peta, Nellore", aadhaar: "---", mobile: "7386766528", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 46, name: "P. Aparna", address: "Fathe Khan Peta, Nellore", aadhaar: "---", mobile: "7416305821", stagnantWater: "No", mosquitoNets: "Yes", coilsVaporizersRacket: "Yes", govtControl: "No" },
+      { sno: 47, name: "A. Dorsani", address: "Fathe Khan Peta, Nellore", aadhaar: "416658436090", mobile: "7569827697", stagnantWater: "Yes", mosquitoNets: "No", coilsVaporizersRacket: "No", govtControl: "No" },
+      { sno: 48, name: "Sk. Hamida", address: "Fathe Khan Peta, Nellore", aadhaar: "387844969423", mobile: "7416130938", stagnantWater: "No", mosquitoNets: "No", coilsVaporizersRacket: "Yes", govtControl: "Yes" },
+      { sno: 49, name: "P. Prasunnadevi", address: "Fathe Khan Peta, Nellore", aadhaar: "208654216312", mobile: "9533833842", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "No", govtControl: "No" },
+      { sno: 50, name: "K. Ramaiah", address: "Fathe Khan Peta, Nellore", aadhaar: "324172002156", mobile: "8008685374", stagnantWater: "Yes", mosquitoNets: "Yes", coilsVaporizersRacket: "No", govtControl: "Yes" }
+    ];
+
+    function populateTable() {
+      const tbody = document.querySelector("#survey-table tbody");
+      tbody.innerHTML = "";
+      surveyData.forEach(entry => {
+        const row = `
+          <tr>
+            <td data-label="S.No">${entry.sno}</td>
+            <td data-label="Name">${entry.name}</td>
+            <td data-label="Address">${entry.address}</td>
+            <td data-label="Aadhaar No.">${entry.aadhaar}</td>
+            <td data-label="Mobile">${entry.mobile}</td>
+            <td data-label="Stagnant Water Removed">${entry.stagnantWater}</td>
+            <td data-label="Mosquito Nets">${entry.mosquitoNets}</td>
+            <td data-label="Coils / Vaporizers / Racket">${entry.coilsVaporizersRacket}</td>
+            <td data-label="Govt. Control">${entry.govtControl}</td>
+          </tr>
+        `;
+        tbody.innerHTML += row;
+      });
+    }
+
+    window.addEventListener("load", () => {
+      gsap.from(".section-content", {
+        opacity: 0,
+        y: 50,
+        duration: 1.2,
+        ease: "power3.out"
+      });
+
+      populateTable();
+    });
+  </script>
+</body>
+</html>

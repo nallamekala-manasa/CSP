@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire - Mosquito Prevention Techniques</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="questionnaire.html" class="active">Questionnaire</a></li>
+                <li><a href="surveydata.html">Survey Data</a></li>
+                <li><a href="visualization.html">Visualization</a></li>
+                <li><a href="photos.html">Photos</a></li>
+                <li><a href="conclusion.html">Conclusion</a></li>
+                <li><a href="team.html">Team</a></li>
+            </ul>
+            <div class="hamburger">☰</div>
+        </div>
+    </nav>
+
+    <section id="questionnaire" class="section">
+        <div class="section-content">
+            <h1>Questionnaire</h1>
+    
+            <form class="survey-form">
+                <div class="form-group">
+                    <label>1. What is your name?</label>
+                    <input type="text" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label>2. What is your residential address?</label>
+                    <input type="text" placeholder="Enter your address" required>
+                </div>
+                <div class="form-group">
+                    <label>3. What is your Aadhaar number?</label>
+                    <input type="text" placeholder="Enter Aadhaar number" required>
+                </div>
+                <div class="form-group">
+                    <label>4. What is your mobile number?</label>
+                    <input type="tel" placeholder="Enter mobile number" required>
+                </div>
+                <div class="form-group">
+                    <label>5. Do you regularly remove stagnant water around your home to prevent mosquito breeding?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q5" value="yes" required> Yes</label>
+                        <label><input type="radio" name="q5" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>6. Do you use mosquito window or door screens/nets in your house?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q6" value="yes" required> Yes</label>
+                        <label><input type="radio" name="q6" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>7. Which mosquito prevention methods do you use?</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="q7" value="coils"> Mosquito coils</label>
+                        <label><input type="checkbox" name="q7" value="vaporizers"> Vaporizers</label>
+                        <label><input type="checkbox" name="q7" value="racket"> Electric racket</label>
+                        <label><input type="checkbox" name="q7" value="none"> None</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>8. Have you observed any mosquito control activities conducted by the government in your area?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q8" value="yes" required> Yes</label>
+                        <label><input type="radio" name="q8" value="no"> No</label>
+                    </div>
+                </div>
+            </form>
+            <a href="surveydata.html" class="cta-button">View Survey Data</a>
+        </div>
+        <canvas id="particle-canvas"></canvas>
+    </section>
+
+    <footer>
+        <p>© 2025 Mosquito Prevention Project. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos - Mosquito Prevention Techniques</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="questionnaire.html">Questionnaire</a></li>
+                <li><a href="surveydata.html">Survey Data</a></li>
+                <li><a href="visualization.html">Visualization</a></li>
+                <li><a href="photos.html" class="active">Photos</a></li>
+                <li><a href="conclusion.html">Conclusion</a></li>
+                <li><a href="team.html">Team</a></li>
+            </ul>
+            <div class="hamburger">☰</div>
+        </div>
+    </nav>
+
+    
+    <section id="photos" class="section photos">
+        <div class="section-content">
+            <h1>Survey Photos</h1>
+            <ul class="description-list">
+                <li><strong>Community Engagement</strong>: Images capturing local residents participating in the mosquito prevention survey.</li>
+                <li><strong>Prevention Techniques</strong>: Visuals showcasing various mosquito prevention methods in action.</li>
+                <li><strong>Environmental Insights</strong>: Photos highlighting environmental controls and community efforts to reduce mosquito breeding.</li>
+            </ul>
+            <div class="gallery-container">
+                <div class="photo-item">
+                    <img src="csp1.jpeg" alt="Survey Photo 1" onclick="openLightbox('csp1.jpeg')">
+                    <p>Community survey in progress</p>
+                </div>
+                <div class="photo-item">
+                    <img src="csp2.jpeg" alt="Survey Photo 2" onclick="openLightbox('csp2.jpeg')">
+                    <p>Residents using mosquito nets</p>
+                </div>
+                <div class="photo-item">
+                    <img src="csp3.jpeg" alt="Survey Photo 3" onclick="openLightbox('csp3.jpeg')">
+                    <p>Awareness about mosquito repellent</p>
+                </div>
+                <div class="photo-item">
+                    <img src="csp4.jpeg" alt="Survey Photo 4" onclick="openLightbox('csp4.jpeg')">
+                    <p>Data Collection</p>
+                </div>
+                <div class="photo-item">
+                    <img src="csp5.jpeg" alt="Survey Photo 5" onclick="openLightbox('csp5.jpeg')">
+                    <p>Survey team in action</p>
+                </div>
+                <div class="photo-item">
+                    <img src="csp6.jpeg" alt="Survey Photo 6" onclick="openLightbox('csp6.jpeg')">
+                    <p>Local awareness campaign</p>
+                </div>
+            </div>
+            <a href="conclusion.html" class="cta-button">View Conclusion</a>
+        </div>
+        <canvas id="particle-canvas"></canvas>
+    </section>
+
+    <footer>
+        <p>© 2025 Mosquito Prevention Project. All rights reserved.</p>
+    </footer>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-modal">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    JavaScript for Lightbox
+    <script>
+        // Function to open the lightbox
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightbox.style.display = 'block';
+            lightboxImg.src = imageSrc;
+        }
+
+        // Function to close the lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+        }
+    </script>
+
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>
